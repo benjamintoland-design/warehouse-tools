@@ -1,3 +1,3 @@
-# Royal Warehouse Tools v2.1
+# Royal Warehouse Tools v2.1.1
 
-Fixes the missing Inventory tab and adds shared CSV/XLS/XLSX import and search.
+Fixes D1 schema initialization by running each CREATE statement separately.
