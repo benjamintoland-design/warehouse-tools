@@ -1,12 +1,3 @@
-# Royal Warehouse Tools Worker
+# Royal Warehouse Tools v2.1
 
-## Deploy through Cloudflare Git integration
-
-- Build command: `npm install`
-- Deploy command: `npx wrangler deploy`
-
-The D1 binding is already configured as `DB` using the supplied database ID.
-
-## Inventory import
-
-Open the Inventory tab, choose CSV/XLS/XLSX, map columns, and click Replace inventory.
+Fixes the missing Inventory tab and adds shared CSV/XLS/XLSX import and search.

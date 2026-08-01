@@ -1,62 +1,134 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Royal Warehouse Tools</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Royal Warehouse Tools</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f3f4f6;font-family:Arial,sans-serif;color:#111827}.app{max-width:1120px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}h1{margin:0}.badge{background:#e5e7eb;padding:7px 11px;border-radius:999px;font-weight:800;font-size:13px}.tools,.modes,.orient,.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tools{margin-bottom:18px}.tool,.mode,.ori,button{min-height:44px;border:1px solid #c7cbd1;border-radius:10px;background:#fff;font-weight:800;cursor:pointer}.tool{font-size:18px;min-height:58px}.active,.primary{background:#111827;color:#fff;border-color:#111827}.grid{display:grid;grid-template-columns:400px 1fr;gap:22px}.panel{background:#fff;border-radius:16px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.08)}.modes{margin-bottom:18px}.field{margin-bottom:15px}label{display:block;font-size:14px;font-weight:800;margin-bottom:7px}input,textarea,select{width:100%;border:1px solid #c7cbd1;border-radius:10px;padding:11px 13px;font-size:17px;text-transform:uppercase}textarea{min-height:185px;resize:vertical;line-height:1.45}.hidden{display:none!important}.actions{grid-template-columns:1fr 110px}.stats,.note{font-size:13px;color:#6b7280;margin-top:10px}.preview-title{display:flex;justify-content:space-between;font-weight:900;margin-bottom:12px}.stage{min-height:430px;display:flex;align-items:center;justify-content:center;background:#eef0f3;border-radius:12px;padding:22px;overflow:auto}.label-card,.print-label{background:#fff;color:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}.label-card{border:1px dashed #999}.location.horizontal{width:4in;height:2in;padding:.12in;gap:.15in}.location.vertical{width:2in;height:4in;flex-direction:column;padding:.14in;gap:.1in}.item{width:3in;height:1in;padding:.07in .1in;gap:.1in}.code-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 auto}.horizontal .code-wrap{width:1.35in}.horizontal .code-box canvas,.horizontal .code-box img{width:1.18in!important;height:1.18in!important}.vertical .code-box canvas,.vertical .code-box img{width:1.55in!important;height:1.55in!important}.item .code-wrap{width:.78in}.item .code-box canvas{width:.72in!important;height:.72in!important}.full{font-size:11px;font-weight:800;margin-top:4px;white-space:nowrap}.display{font-size:43px;line-height:1;font-weight:900;white-space:nowrap;text-align:center;flex:1}.vertical .display{font-size:28px;flex:none}.item .display{font-size:22px}.recent{margin-top:18px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.chip{min-height:34px;padding:6px 10px;border-radius:999px;font-size:13px}.app-footer{
-  display:flex;justify-content:space-between;align-items:center;gap:14px;
-  margin-top:18px;padding:10px 4px;color:#6b7280;font-size:13px
-}
-.app-footer button{
-  border:0;background:transparent;color:#374151;font-weight:800;cursor:pointer;
-  padding:4px 0;min-height:auto
-}
-.modal-backdrop{
-  position:fixed;inset:0;background:rgba(17,24,39,.58);display:flex;
-  align-items:center;justify-content:center;padding:18px;z-index:100
-}
-.modal{
-  width:min(620px,100%);max-height:86vh;overflow:auto;background:#fff;
-  border-radius:18px;padding:22px;box-shadow:0 24px 70px rgba(0,0,0,.3)
-}
-.modal h2{margin:0 0 4px}.modal h3{margin:20px 0 8px;font-size:16px}
-.modal p{line-height:1.5}.modal ul{margin:7px 0;padding-left:22px;line-height:1.55}
-.modal-close{
-  float:right;width:auto;min-height:38px;padding:7px 11px;border:1px solid #c7cbd1;
-  border-radius:9px;background:#fff;font-weight:800;cursor:pointer
-}
-.modal-meta{
-  border-top:1px solid #e5e7eb;margin-top:20px;padding-top:12px;
-  color:#6b7280;font-size:13px
-}
-#printArea{display:none}.print-label{page-break-after:always;break-after:page}.print-label:last-child{page-break-after:auto;break-after:auto}@media(max-width:850px){.grid{grid-template-columns:1fr}.app{padding:14px}}@media print{.app{display:none!important}#printArea{display:block!important}body{background:#fff}}
-</style></head><body>
-<main class="app"><div class="top"><h1>Royal Warehouse Tools</h1><div class="badge">v1.0.0</div></div>
-<div class="tools"><button id="locTool" class="tool active">📍 Location Labels</button><button id="itemTool" class="tool">📦 Item Labels</button></div>
-<div class="grid"><section class="panel"><div class="modes"><button id="singleTab" class="mode active">Single</button><button id="batchTab" class="mode">Batch</button></div>
-<div id="singlePane" class="field"><label id="singleLabel">Official location code</label><input id="singleInput" value="P-10-A-05"></div>
-<div id="batchPane" class="hidden"><div class="field"><label id="batchLabel">One official location per line</label><textarea id="batchInput" placeholder="P-10-A-01&#10;P-10-A-02&#10;P-10-A-03"></textarea></div><div id="batchStats" class="stats">0 labels ready</div></div>
-<div id="orientationSection" class="field"><label>Orientation</label><div class="orient"><button id="horizontalBtn" class="ori active">Horizontal</button><button id="verticalBtn" class="ori">Vertical</button></div></div>
-<div class="actions"><button id="printBtn" class="primary">Print label</button><button id="clearBtn">Clear</button></div>
-<div class="recent"><strong id="recentTitle">Recent location labels</strong><div id="recentList" class="chips"></div></div>
-<div id="helpText" class="note">Location labels use QR codes. Blank lines and duplicates are ignored.</div></section>
-<section class="panel"><div class="preview-title"><span id="previewTitle">Live 4 × 2 preview</span><span id="previewCount">Single</span></div><div class="stage"><div id="previewCard" class="label-card location horizontal"><div class="code-wrap"><div id="previewCode" class="code-box"></div><div id="previewFull" class="full">P-10-A-05</div></div><div id="previewDisplay" class="display">P10A-5</div></div></div></section></div></main><div id="printArea"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bwip-js@4.5.1/dist/bwip-js-min.js"></script>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f4f6;font-family:Arial,sans-serif;color:#111827}
+.app{max-width:1120px;margin:auto;padding:24px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+h1{margin:0}.badge{background:#e5e7eb;padding:7px 11px;border-radius:999px;font-weight:800;font-size:13px}
+.tools{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.tool,.mode,.ori,button{min-height:44px;border:1px solid #c7cbd1;border-radius:10px;background:#fff;font-weight:800;cursor:pointer}
+.tool{font-size:18px;min-height:58px}.active,.primary{background:#111827;color:#fff;border-color:#111827}
+.grid{display:grid;grid-template-columns:400px 1fr;gap:22px}
+.panel{background:#fff;border-radius:16px;padding:20px;box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.modes,.orient,.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modes{margin-bottom:18px}.actions{grid-template-columns:1fr 110px}
+.field{margin-bottom:15px}label{display:block;font-size:14px;font-weight:800;margin-bottom:7px}
+input,textarea,select{width:100%;border:1px solid #c7cbd1;border-radius:10px;padding:11px 13px;font-size:17px}
+input,textarea{text-transform:uppercase}textarea{min-height:185px;resize:vertical;line-height:1.45}
+.hidden{display:none!important}.stats,.note{font-size:13px;color:#6b7280;margin-top:10px}
+.preview-title{display:flex;justify-content:space-between;font-weight:900;margin-bottom:12px}
+.stage{min-height:430px;display:flex;align-items:center;justify-content:center;background:#eef0f3;border-radius:12px;padding:22px;overflow:auto}
+.label-card,.print-label{background:#fff;color:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.label-card{border:1px dashed #999}.location.horizontal{width:4in;height:2in;padding:.12in;gap:.15in}
+.location.vertical{width:2in;height:4in;flex-direction:column;padding:.14in;gap:.1in}.item{width:3in;height:1in;padding:.07in .1in;gap:.1in}
+.code-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 auto}
+.horizontal .code-wrap{width:1.35in}.horizontal .code-box canvas,.horizontal .code-box img{width:1.18in!important;height:1.18in!important}
+.vertical .code-box canvas,.vertical .code-box img{width:1.55in!important;height:1.55in!important}.item .code-wrap{width:.78in}
+.item .code-box canvas{width:.72in!important;height:.72in!important}.full{font-size:11px;font-weight:800;margin-top:4px;white-space:nowrap}
+.display{font-size:43px;line-height:1;font-weight:900;white-space:nowrap;text-align:center;flex:1}.vertical .display{font-size:28px;flex:none}.item .display{font-size:22px}
+.recent{margin-top:18px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.chip{min-height:34px;padding:6px 10px;border-radius:999px;font-size:13px}
+.inventory-result{display:block;width:100%;text-align:left;border:1px solid #e5e7eb;background:#fff;border-radius:10px;padding:10px 12px;margin:8px 0;cursor:pointer}
+.inventory-result strong{display:block}.inventory-result small{display:block;color:#6b7280;margin-top:3px}
+.app-footer{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:18px;padding:10px 4px;color:#6b7280;font-size:13px}
+.app-footer button{border:0;background:transparent;color:#374151;font-weight:800;cursor:pointer;padding:4px 0;min-height:auto}
+.modal-backdrop{position:fixed;inset:0;background:rgba(17,24,39,.58);display:flex;align-items:center;justify-content:center;padding:18px;z-index:100}
+.modal{width:min(620px,100%);max-height:86vh;overflow:auto;background:#fff;border-radius:18px;padding:22px;box-shadow:0 24px 70px rgba(0,0,0,.3)}
+.modal-close{float:right;width:auto;min-height:38px;padding:7px 11px}
+#printArea{display:none}.print-label{page-break-after:always;break-after:page}.print-label:last-child{page-break-after:auto;break-after:auto}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.app{padding:14px}}
+@media print{.app{display:none!important}#printArea{display:block!important}body{background:#fff}}
+</style>
+</head>
+<body>
+<main class="app">
+<div class="top"><h1>Royal Warehouse Tools</h1><div class="badge">v2.1.0</div></div>
+
+<div class="tools">
+  <button id="locTool" class="tool active">📍 Location Labels</button>
+  <button id="itemTool" class="tool">📦 Item Labels</button>
+  <button id="inventoryTool" class="tool">📚 Inventory</button>
+</div>
+
+<div id="labelWorkspace" class="grid">
+<section class="panel">
+  <div class="modes"><button id="singleTab" class="mode active">Single</button><button id="batchTab" class="mode">Batch</button></div>
+  <div id="singlePane" class="field"><label id="singleLabel">Official location code</label><input id="singleInput" value="P-10-A-05"></div>
+  <div id="batchPane" class="hidden"><div class="field"><label id="batchLabel">One official location per line</label><textarea id="batchInput"></textarea></div><div id="batchStats" class="stats">0 labels ready</div></div>
+  <div id="orientationSection" class="field"><label>Orientation</label><div class="orient"><button id="horizontalBtn" class="ori active">Horizontal</button><button id="verticalBtn" class="ori">Vertical</button></div></div>
+  <div class="actions"><button id="printBtn" class="primary">Print label</button><button id="clearBtn">Clear</button></div>
+  <div class="recent"><strong id="recentTitle">Recent location labels</strong><div id="recentList" class="chips"></div></div>
+  <div id="helpText" class="note">Location labels use QR codes.</div>
+</section>
+<section class="panel">
+  <div class="preview-title"><span id="previewTitle">Live 4 × 2 preview</span><span id="previewCount">Single</span></div>
+  <div class="stage"><div id="previewCard" class="label-card location horizontal"><div class="code-wrap"><div id="previewCode" class="code-box"></div><div id="previewFull" class="full">P-10-A-05</div></div><div id="previewDisplay" class="display">P10A-5</div></div></div>
+</section>
+</div>
+
+<section id="inventoryWorkspace" class="panel hidden">
+  <div class="preview-title"><span>Inventory Manager</span><span id="inventoryStatusBadge">Checking…</span></div>
+  <div class="field"><label for="inventoryFile">Upload inventory CSV or Excel</label><input id="inventoryFile" type="file" accept=".csv,.xlsx,.xls"></div>
+  <div id="columnMapper" class="hidden">
+    <div class="field"><label>Item code column</label><select id="itemColumn"></select></div>
+    <div class="field"><label>Manufacturer column</label><select id="manufacturerColumn"></select></div>
+    <div class="field"><label>Description column</label><select id="descriptionColumn"></select></div>
+    <div class="actions"><button id="importInventoryBtn" class="primary">Replace inventory</button><button id="cancelImportBtn">Cancel</button></div>
+  </div>
+  <div id="importProgress" class="note">Choose a file to preview its columns.</div>
+  <hr style="border:0;border-top:1px solid #e5e7eb;margin:22px 0">
+  <div class="field"><label for="inventorySearch">Search shared inventory</label><input id="inventorySearch" placeholder="Item code, manufacturer, or description"></div>
+  <div id="inventoryResults"></div>
+</section>
+
+<footer class="app-footer">
+  <span>Royal Warehouse Tools v2.1.0 · Built in-house by <strong>Benjamin Toland</strong></span>
+  <button id="aboutBtn">About & Release Notes</button>
+</footer>
+</main>
+
+<div id="aboutModal" class="modal-backdrop hidden"><div class="modal"><button id="aboutClose" class="modal-close">Close</button><h2>Royal Warehouse Tools</h2><p><strong>Version 2.1.0</strong><br>Built in-house by <strong>Benjamin Toland</strong></p><p>Location labels, Data Matrix item labels, batch printing, and shared D1 inventory import/search.</p><p><strong>Have an idea or find a bug? Talk to Ben.</strong></p></div></div>
+<div id="printArea"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bwip-js@4.5.1/dist/bwip-js-min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
-const $=id=>document.getElementById(id),locTool=$('locTool'),itemTool=$('itemTool'),singleTab=$('singleTab'),batchTab=$('batchTab'),singlePane=$('singlePane'),batchPane=$('batchPane'),singleInput=$('singleInput'),batchInput=$('batchInput'),singleLabel=$('singleLabel'),batchLabel=$('batchLabel'),orientationSection=$('orientationSection'),horizontalBtn=$('horizontalBtn'),verticalBtn=$('verticalBtn'),printBtn=$('printBtn'),clearBtn=$('clearBtn'),previewCard=$('previewCard'),previewCode=$('previewCode'),previewFull=$('previewFull'),previewDisplay=$('previewDisplay'),previewTitle=$('previewTitle'),previewCount=$('previewCount'),batchStats=$('batchStats'),recentTitle=$('recentTitle'),recentList=$('recentList'),helpText=$('helpText'),printArea=$('printArea');
-let tool=localStorage.getItem('rwt-tool')||'location',mode=localStorage.getItem('rwt-mode')||'single',orientation=localStorage.getItem('rwt-orientation')||'horizontal';
-function clean(v){return v.trim().toUpperCase().replace(/\s+/g,'')}function simple(c){const p=c.split('-').filter(Boolean);if(p.length>=4){const n=parseInt(p.at(-1),10);return p.slice(0,-1).join('')+'-'+(Number.isNaN(n)?p.at(-1):n)}return c.replaceAll('-','')}
+const $=id=>document.getElementById(id);
+const locTool=$('locTool'),itemTool=$('itemTool'),inventoryTool=$('inventoryTool'),labelWorkspace=$('labelWorkspace'),inventoryWorkspace=$('inventoryWorkspace');
+const singleTab=$('singleTab'),batchTab=$('batchTab'),singlePane=$('singlePane'),batchPane=$('batchPane'),singleInput=$('singleInput'),batchInput=$('batchInput'),singleLabel=$('singleLabel'),batchLabel=$('batchLabel'),orientationSection=$('orientationSection'),horizontalBtn=$('horizontalBtn'),verticalBtn=$('verticalBtn'),printBtn=$('printBtn'),clearBtn=$('clearBtn'),previewCard=$('previewCard'),previewCode=$('previewCode'),previewFull=$('previewFull'),previewDisplay=$('previewDisplay'),previewTitle=$('previewTitle'),previewCount=$('previewCount'),batchStats=$('batchStats'),recentTitle=$('recentTitle'),recentList=$('recentList'),helpText=$('helpText'),printArea=$('printArea');
+const inventoryFile=$('inventoryFile'),columnMapper=$('columnMapper'),itemColumn=$('itemColumn'),manufacturerColumn=$('manufacturerColumn'),descriptionColumn=$('descriptionColumn'),importInventoryBtn=$('importInventoryBtn'),cancelImportBtn=$('cancelImportBtn'),importProgress=$('importProgress'),inventoryStatusBadge=$('inventoryStatusBadge'),inventorySearch=$('inventorySearch'),inventoryResults=$('inventoryResults');
+const aboutBtn=$('aboutBtn'),aboutModal=$('aboutModal'),aboutClose=$('aboutClose');
+let tool=localStorage.getItem('rwt-tool')||'location',mode=localStorage.getItem('rwt-mode')||'single',orientation=localStorage.getItem('rwt-orientation')||'horizontal',pendingRows=[];
+
+function clean(v){return String(v||'').trim().toUpperCase().replace(/\s+/g,'')}
+function simple(c){const p=c.split('-').filter(Boolean);if(p.length>=4){const n=parseInt(p.at(-1),10);return p.slice(0,-1).join('')+'-'+(Number.isNaN(n)?p.at(-1):n)}return c.replaceAll('-','')}
 function codes(){if(mode==='single')return[clean(singleInput.value)].filter(Boolean);const s=new Set(),o=[];batchInput.value.split(/\r?\n/).forEach(x=>{x=clean(x);if(x&&!s.has(x)){s.add(x);o.push(x)}});return o}
-function makeCode(el,text){el.innerHTML='';if(tool==='location'){if(window.QRCode)new QRCode(el,{text,width:240,height:240,correctLevel:QRCode.CorrectLevel.M});else el.textContent='QR failed'}else{const c=document.createElement('canvas');el.appendChild(c);try{bwipjs.toCanvas(c,{bcid:'datamatrix',text,scale:5,paddingwidth:0,paddingheight:0})}catch(e){el.textContent='Data Matrix failed'}}}
-function render(){const a=codes(),c=a[0]||(tool==='location'?'P-10-A-05':'AMR1224SG41');previewCard.className='label-card '+(tool==='location'?'location '+orientation:'item');previewFull.textContent=c;previewDisplay.textContent=tool==='location'?simple(c):c;makeCode(previewCode,c);previewCount.textContent=mode==='single'?'Single':a.length+' label'+(a.length===1?'':'s');batchStats.textContent=a.length+' unique label'+(a.length===1?'':'s')+' ready'}
-function setTool(t){tool=t;localStorage.setItem('rwt-tool',t);locTool.classList.toggle('active',t==='location');itemTool.classList.toggle('active',t==='item');orientationSection.classList.toggle('hidden',t==='item');singleLabel.textContent=t==='location'?'Official location code':'Item code';batchLabel.textContent=t==='location'?'One official location per line':'One item code per line';singleInput.placeholder=t==='location'?'P-10-A-05':'AMR1224SG41';batchInput.placeholder=t==='location'?'P-10-A-01\nP-10-A-02':'AMR1224SG41\nITEM-0002';previewTitle.textContent=t==='location'?'Live 4 × 2 preview':'Live 3 × 1 preview';recentTitle.textContent=t==='location'?'Recent location labels':'Recent item labels';helpText.textContent=t==='location'?'Location labels use QR codes. Blank lines and duplicates are ignored.':'Item labels use Data Matrix only. Blank lines and duplicates are ignored.';if(t==='item'&&singleInput.value==='P-10-A-05')singleInput.value='AMR1224SG41';if(t==='location'&&singleInput.value==='AMR1224SG41')singleInput.value='P-10-A-05';paintRecent();render()}
+function makeCode(el,text){el.innerHTML='';if(tool==='location'){new QRCode(el,{text,width:240,height:240,correctLevel:QRCode.CorrectLevel.M})}else{const c=document.createElement('canvas');el.appendChild(c);bwipjs.toCanvas(c,{bcid:'datamatrix',text,scale:5,paddingwidth:0,paddingheight:0})}}
+function render(){if(tool==='inventory')return;const a=codes(),c=a[0]||(tool==='location'?'P-10-A-05':'AMR1224SG41');previewCard.className='label-card '+(tool==='location'?'location '+orientation:'item');previewFull.textContent=c;previewDisplay.textContent=tool==='location'?simple(c):c;makeCode(previewCode,c);previewCount.textContent=mode==='single'?'Single':a.length+' labels';batchStats.textContent=a.length+' unique labels ready'}
+function setTool(t){tool=t;localStorage.setItem('rwt-tool',t);locTool.classList.toggle('active',t==='location');itemTool.classList.toggle('active',t==='item');inventoryTool.classList.toggle('active',t==='inventory');labelWorkspace.classList.toggle('hidden',t==='inventory');inventoryWorkspace.classList.toggle('hidden',t!=='inventory');if(t==='inventory'){loadStatus();return}orientationSection.classList.toggle('hidden',t==='item');singleLabel.textContent=t==='location'?'Official location code':'Item code';batchLabel.textContent=t==='location'?'One official location per line':'One item code per line';previewTitle.textContent=t==='location'?'Live 4 × 2 preview':'Live 3 × 1 preview';recentTitle.textContent=t==='location'?'Recent location labels':'Recent item labels';if(t==='item'&&singleInput.value==='P-10-A-05')singleInput.value='AMR1224SG41';if(t==='location'&&singleInput.value==='AMR1224SG41')singleInput.value='P-10-A-05';paintRecent();render()}
 function setMode(m){mode=m;localStorage.setItem('rwt-mode',m);singleTab.classList.toggle('active',m==='single');batchTab.classList.toggle('active',m==='batch');singlePane.classList.toggle('hidden',m!=='single');batchPane.classList.toggle('hidden',m!=='batch');printBtn.textContent=m==='single'?'Print label':'Print batch';render()}
 function setOrientation(o){orientation=o;localStorage.setItem('rwt-orientation',o);horizontalBtn.classList.toggle('active',o==='horizontal');verticalBtn.classList.toggle('active',o==='vertical');render()}
 function recentKey(){return tool==='location'?'rwt-recent-location':'rwt-recent-item'}function recent(){try{return JSON.parse(localStorage.getItem(recentKey())||'[]')}catch{return[]}}function paintRecent(){recentList.innerHTML='';recent().forEach(c=>{const b=document.createElement('button');b.className='chip';b.textContent=c;b.onclick=()=>{setMode('single');singleInput.value=c;render()};recentList.appendChild(b)})}function saveRecent(a){let r=recent();a.slice(0,12).reverse().forEach(c=>{r=r.filter(x=>x!==c);r.unshift(c)});localStorage.setItem(recentKey(),JSON.stringify(r.slice(0,12)));paintRecent()}
 function buildPrint(a){printArea.innerHTML='';a.forEach(c=>{const l=document.createElement('div');l.className='print-label '+(tool==='location'?'location '+orientation:'item');const w=document.createElement('div');w.className='code-wrap';const b=document.createElement('div');b.className='code-box';const f=document.createElement('div');f.className='full';f.textContent=c;const d=document.createElement('div');d.className='display';d.textContent=tool==='location'?simple(c):c;w.append(b,f);l.append(w,d);printArea.appendChild(l);makeCode(b,c)});let s=$('dynamicPageStyle');if(!s){s=document.createElement('style');s.id='dynamicPageStyle';document.head.appendChild(s)}s.textContent=tool==='item'?'@page{size:3in 1in;margin:0}':orientation==='horizontal'?'@page{size:4in 2in;margin:0}':'@page{size:2in 4in;margin:0}'}
 function doPrint(){const a=codes();if(!a.length)return;buildPrint(a);saveRecent(a);window.print()}
-locTool.onclick=()=>setTool('location');itemTool.onclick=()=>setTool('item');singleTab.onclick=()=>setMode('single');batchTab.onclick=()=>setMode('batch');horizontalBtn.onclick=()=>setOrientation('horizontal');verticalBtn.onclick=()=>setOrientation('vertical');singleInput.oninput=render;batchInput.oninput=render;singleInput.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();doPrint()}};printBtn.onclick=doPrint;clearBtn.onclick=()=>{mode==='single'?singleInput.value='':batchInput.value='';render()};aboutBtn.addEventListener('click',()=>aboutModal.classList.remove('hidden'));
-aboutClose.addEventListener('click',()=>aboutModal.classList.add('hidden'));
-aboutModal.addEventListener('click',e=>{if(e.target===aboutModal)aboutModal.classList.add('hidden')});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')aboutModal.classList.add('hidden')});
 
+async function api(path,opts={}){const r=await fetch(path,{headers:{'Content-Type':'application/json'},...opts});const d=await r.json();if(!r.ok)throw new Error(d.error||'Request failed');return d}
+async function loadStatus(){try{const s=await api('/api/inventory/status');inventoryStatusBadge.textContent=s.count+' items · '+(s.updated_at||'never imported')}catch(e){inventoryStatusBadge.textContent='Database unavailable'}}
+function fillSelect(sel,headers,terms){sel.innerHTML='';headers.forEach((h,i)=>{const o=document.createElement('option');o.value=i;o.textContent=h||('Column '+(i+1));sel.appendChild(o)});const idx=headers.findIndex(h=>terms.some(t=>String(h).toLowerCase().includes(t)));if(idx>=0)sel.value=idx}
+inventoryFile.onchange=async()=>{const file=inventoryFile.files[0];if(!file)return;importProgress.textContent='Reading '+file.name+'…';try{const wb=XLSX.read(await file.arrayBuffer(),{type:'array'}),ws=wb.Sheets[wb.SheetNames[0]],rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});if(rows.length<2)throw new Error('No data rows');const headers=rows[0].map(x=>String(x).trim());pendingRows=rows.slice(1);fillSelect(itemColumn,headers,['item','code','catalog','part']);fillSelect(manufacturerColumn,headers,['manufacturer','mfr','vendor','brand']);fillSelect(descriptionColumn,headers,['description','desc','name']);columnMapper.classList.remove('hidden');importProgress.textContent=(rows.length-1)+' rows found.'}catch(e){importProgress.textContent='Could not read file: '+e.message}}
+cancelImportBtn.onclick=()=>{inventoryFile.value='';pendingRows=[];columnMapper.classList.add('hidden');importProgress.textContent='Import cancelled.'}
+importInventoryBtn.onclick=async()=>{const ii=+itemColumn.value,mi=+manufacturerColumn.value,di=+descriptionColumn.value;const records=pendingRows.map(r=>({item_code:clean(r[ii]),manufacturer:String(r[mi]||'').trim(),description:String(r[di]||'').trim()})).filter(r=>r.item_code);if(!records.length)return;importInventoryBtn.disabled=true;try{await api('/api/inventory/reset',{method:'POST',body:'{}'});for(let i=0;i<records.length;i+=100){const chunk=records.slice(i,i+100);await api('/api/inventory/import',{method:'POST',body:JSON.stringify({items:chunk})});importProgress.textContent='Imported '+Math.min(i+chunk.length,records.length)+' of '+records.length}await api('/api/inventory/finish',{method:'POST',body:JSON.stringify({count:records.length})});importProgress.textContent='Done — '+records.length+' items shared.';columnMapper.classList.add('hidden');loadStatus()}catch(e){importProgress.textContent='Import failed: '+e.message}finally{importInventoryBtn.disabled=false}}
+let timer;inventorySearch.oninput=()=>{clearTimeout(timer);timer=setTimeout(async()=>{inventoryResults.innerHTML='';const q=inventorySearch.value.trim();if(q.length<2)return;try{const d=await api('/api/inventory/search?q='+encodeURIComponent(q));d.items.forEach(item=>{const b=document.createElement('button');b.className='inventory-result';b.innerHTML='<strong>'+((item.manufacturer?item.manufacturer+' ':'')+item.item_code)+'</strong><small>'+(item.description||'No description')+'</small>';b.onclick=()=>{setTool('item');setMode('single');singleInput.value=item.item_code;render()};inventoryResults.appendChild(b)})}catch(e){inventoryResults.textContent='Search failed.'}},250)}
+
+locTool.onclick=()=>setTool('location');itemTool.onclick=()=>setTool('item');inventoryTool.onclick=()=>setTool('inventory');
+singleTab.onclick=()=>setMode('single');batchTab.onclick=()=>setMode('batch');horizontalBtn.onclick=()=>setOrientation('horizontal');verticalBtn.onclick=()=>setOrientation('vertical');
+singleInput.oninput=render;batchInput.oninput=render;singleInput.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();doPrint()}};printBtn.onclick=doPrint;clearBtn.onclick=()=>{mode==='single'?singleInput.value='':batchInput.value='';render()};
+aboutBtn.onclick=()=>aboutModal.classList.remove('hidden');aboutClose.onclick=()=>aboutModal.classList.add('hidden');aboutModal.onclick=e=>{if(e.target===aboutModal)aboutModal.classList.add('hidden')};
 setTool(tool);setMode(mode);setOrientation(orientation);paintRecent();render();
-</script></body></html>
+</script>
+</body></html>
