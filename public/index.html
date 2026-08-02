@@ -25,12 +25,12 @@ input,textarea{text-transform:uppercase}textarea{min-height:185px;resize:vertica
 .stage{min-height:430px;display:flex;align-items:center;justify-content:center;background:#eef0f3;border-radius:12px;padding:22px;overflow:auto}
 .label-card,.print-label{background:#fff;color:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .label-card{border:1px dashed #999}.location.horizontal{width:4in;height:2in;padding:.12in;gap:.15in}
-.location.vertical{width:2in;height:4in;flex-direction:column;padding:.14in;gap:.1in}.item{width:3in;height:1in;padding:.07in .1in;gap:.1in}
+.location.vertical{width:2in;height:4in;flex-direction:column;padding:.14in;gap:.1in}.item{width:3in;height:1in;padding:.055in .085in;gap:.14in;align-items:flex-start;justify-content:flex-start}
 .code-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 auto}
 .horizontal .code-wrap{width:1.35in}.horizontal .code-box canvas,.horizontal .code-box img{width:1.18in!important;height:1.18in!important}
-.vertical .code-box canvas,.vertical .code-box img{width:1.55in!important;height:1.55in!important}.item .code-wrap{width:.78in}
-.item .code-box canvas{width:.72in!important;height:.72in!important}.full{font-size:11px;font-weight:800;margin-top:4px;white-space:nowrap}
-.display{font-size:43px;line-height:1;font-weight:900;white-space:nowrap;text-align:center;flex:1}.vertical .display{font-size:28px;flex:none}.item .display{font-size:20px;text-align:left;white-space:normal}.item-text{min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center}.item-description{font-size:11px;line-height:1.08;font-weight:800;margin-top:5px;max-height:2.2em;overflow:hidden;text-transform:uppercase}.lookup-row{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:end}.lookup-row button{padding:0 14px}.lookup-message{font-size:12px;margin-top:7px;color:#6b7280}.lookup-message.ok{color:#047857}.lookup-message.warn{color:#b45309}.lookup-message.error{color:#b91c1c}
+.vertical .code-box canvas,.vertical .code-box img{width:1.55in!important;height:1.55in!important}.item .code-wrap{width:.80in;height:.89in;justify-content:flex-start;padding-top:.005in}
+.item .code-box canvas{width:.73in!important;height:.73in!important}.full{font-size:11px;font-weight:800;margin-top:4px;white-space:nowrap}.item .full{font-size:9px;line-height:1;margin-top:3px}
+.display{font-size:43px;line-height:1;font-weight:900;white-space:nowrap;text-align:center;flex:1}.vertical .display{font-size:28px;flex:none}.item .display{font-size:15px;line-height:1.02;text-align:left;white-space:normal;overflow-wrap:anywhere;letter-spacing:.01em}.item-text{min-width:0;flex:1;height:.89in;display:flex;flex-direction:column;justify-content:flex-start;padding-top:.035in}.item-description{font-size:11px;line-height:1.12;font-weight:700;margin-top:6px;max-height:2.3em;overflow:hidden;text-transform:uppercase;overflow-wrap:anywhere}.lookup-row{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:end}.lookup-row button{padding:0 14px}.lookup-message{font-size:12px;margin-top:7px;color:#6b7280}.lookup-message.ok{color:#047857}.lookup-message.warn{color:#b45309}.lookup-message.error{color:#b91c1c}
 .recent{margin-top:18px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.chip{min-height:34px;padding:6px 10px;border-radius:999px;font-size:13px}
 .inventory-result{display:block;width:100%;text-align:left;border:1px solid #e5e7eb;background:#fff;border-radius:10px;padding:10px 12px;margin:8px 0;cursor:pointer}
 .inventory-result strong{display:block}.inventory-result small{display:block;color:#6b7280;margin-top:3px}
@@ -46,7 +46,7 @@ input,textarea{text-transform:uppercase}textarea{min-height:185px;resize:vertica
 </head>
 <body>
 <main class="app">
-<div class="top"><h1>Royal Warehouse Tools</h1><div class="badge">v2.2.0</div></div>
+<div class="top"><h1>Royal Warehouse Tools</h1><div class="badge">v2.2.1</div></div>
 
 <div class="tools">
   <button id="locTool" class="tool active">📍 Location Labels</button>
@@ -98,7 +98,7 @@ input,textarea{text-transform:uppercase}textarea{min-height:185px;resize:vertica
 </footer>
 </main>
 
-<div id="aboutModal" class="modal-backdrop hidden"><div class="modal"><button id="aboutClose" class="modal-close">Close</button><h2>Royal Warehouse Tools</h2><p><strong>Version 2.2.0</strong><br>Built in-house by <strong>Benjamin Toland</strong></p><p>Location labels, Data Matrix item labels, batch printing, and shared D1 inventory import/search.</p><p><strong>Have an idea or find a bug? Talk to Ben.</strong></p></div></div>
+<div id="aboutModal" class="modal-backdrop hidden"><div class="modal"><button id="aboutClose" class="modal-close">Close</button><h2>Royal Warehouse Tools</h2><p><strong>Version 2.2.1</strong><br>Built in-house by <strong>Benjamin Toland</strong></p><p>Location labels, Data Matrix item labels, batch printing, and shared D1 inventory import/search.</p><p><strong>Have an idea or find a bug? Talk to Ben.</strong></p></div></div>
 <div id="printArea"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
