@@ -47,11 +47,36 @@ export default {
       }
 
       if (request.method === "GET" && url.pathname.startsWith("/api/inventory/item/")) {
-        const code = decodeURIComponent(url.pathname.slice("/api/inventory/item/".length)).trim().toUpperCase();
+        const code = decodeURIComponent(url.pathname.slice("/api/inventory/item/".length)).trim().toUpperCase().replace(/\s+/g, "");
         const row = await env.DB.prepare(
           "SELECT item_code, manufacturer, description FROM inventory WHERE item_code = ?"
         ).bind(code).first();
         return row ? json(row) : json({ error: "Item not found" }, 404);
+      }
+
+      if (request.method === "POST" && url.pathname === "/api/inventory/item") {
+        const body = await request.json();
+        const itemCode = String(body.item_code || "").trim().toUpperCase().replace(/\s+/g, "");
+        const description = String(body.description || "").trim();
+        const manufacturer = String(body.manufacturer || "").trim();
+
+        if (!itemCode || !description) {
+          return json({ error: "Item code and description are required." }, 400);
+        }
+
+        await env.DB.prepare(`
+          INSERT INTO inventory (item_code, manufacturer, description, updated_at)
+          VALUES (?, ?, ?, CURRENT_TIMESTAMP)
+          ON CONFLICT(item_code) DO UPDATE SET
+            manufacturer = CASE
+              WHEN excluded.manufacturer <> '' THEN excluded.manufacturer
+              ELSE inventory.manufacturer
+            END,
+            description = excluded.description,
+            updated_at = CURRENT_TIMESTAMP
+        `).bind(itemCode, manufacturer, description).run();
+
+        return json({ ok: true, item_code: itemCode, manufacturer, description });
       }
 
       if (request.method === "GET" && url.pathname === "/api/inventory/search") {
@@ -90,7 +115,7 @@ export default {
               description = excluded.description,
               updated_at = CURRENT_TIMESTAMP
           `).bind(
-            String(item.item_code || "").trim().toUpperCase(),
+            String(item.item_code || "").trim().toUpperCase().replace(/\s+/g, ""),
             String(item.manufacturer || "").trim(),
             String(item.description || "").trim()
           )
