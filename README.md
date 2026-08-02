@@ -1,8 +1,8 @@
-# Royal Warehouse Tools Worker v2.2.4
+# Royal Warehouse Tools Worker v2.2.5
 
 Cloudflare Worker + D1 inventory database + static web app.
 
-## v2.2.4 changes
+## v2.2.5 changes
 
 - Added a separate Manufacturer field to single item-label lookup and entry.
 - Manufacturer and description automatically load from shared D1 inventory.
@@ -24,3 +24,5 @@ Deploy through the existing Cloudflare Git integration with:
 - Moved the manufacturer/item-code title and description into a compact top-aligned text block.
 - Added automatic title font reduction for long manufacturer + item-code combinations.
 - Limited descriptions to two clean word-wrapped lines without splitting words.
+
+- Force item codes, manufacturers, and descriptions to uppercase in previews, printing, manual saves, and inventory imports.
