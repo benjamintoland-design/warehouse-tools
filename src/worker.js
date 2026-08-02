@@ -57,8 +57,8 @@ export default {
       if (request.method === "POST" && url.pathname === "/api/inventory/item") {
         const body = await request.json();
         const itemCode = String(body.item_code || "").trim().toUpperCase().replace(/\s+/g, "");
-        const description = String(body.description || "").trim();
-        const manufacturer = String(body.manufacturer || "").trim();
+        const description = String(body.description || "").trim().toUpperCase();
+        const manufacturer = String(body.manufacturer || "").trim().toUpperCase();
 
         if (!itemCode || !description) {
           return json({ error: "Item code and description are required." }, 400);
@@ -119,8 +119,8 @@ export default {
               updated_at = CURRENT_TIMESTAMP
           `).bind(
             String(item.item_code || "").trim().toUpperCase().replace(/\s+/g, ""),
-            String(item.manufacturer || "").trim(),
-            String(item.description || "").trim()
+            String(item.manufacturer || "").trim().toUpperCase(),
+            String(item.description || "").trim().toUpperCase()
           )
         );
         await env.DB.batch(statements);
