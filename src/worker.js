@@ -76,7 +76,10 @@ export default {
             updated_at = CURRENT_TIMESTAMP
         `).bind(itemCode, manufacturer, description).run();
 
-        return json({ ok: true, item_code: itemCode, manufacturer, description });
+        const saved = await env.DB.prepare(
+          "SELECT item_code, manufacturer, description FROM inventory WHERE item_code = ?"
+        ).bind(itemCode).first();
+        return json(saved || { ok: true, item_code: itemCode, manufacturer, description });
       }
 
       if (request.method === "GET" && url.pathname === "/api/inventory/search") {

@@ -1,25 +1,20 @@
-# Royal Warehouse Tools Worker v2.2.1
+# Royal Warehouse Tools Worker v2.2.2
 
 Cloudflare Worker + D1 inventory database + static web app.
 
-## v2.2.1 changes
+## v2.2.2 changes
 
-- Item-label descriptions automatically load from the shared D1 inventory database.
-- Missing items show an editable description field.
-- **Add to Inventory** saves a missing item and description to D1.
-- Existing descriptions can be edited and updated.
-- Single and batch item-label printing include descriptions when available.
-- Batch printing warns before printing item codes that have no description.
-- Primary-bin information is not displayed on item labels.
+- Added a separate Manufacturer field to single item-label lookup and entry.
+- Manufacturer and description automatically load from shared D1 inventory.
+- Missing items can be added with item code, manufacturer, and description.
+- Existing manufacturer/description details can be updated.
+- Item labels now combine manufacturer + item code on the bold title line.
+- Description prints separately below the title and may wrap to two lines.
+- Removed the duplicate tiny item code beneath the Data Matrix on item labels.
+- Batch labels also load manufacturer and description from D1.
+- Primary-bin information remains excluded from item labels.
 
 Deploy through the existing Cloudflare Git integration with:
 
 - Build command: `npm install`
 - Deploy command: `npx wrangler deploy`
-
-
-## v2.2.1
-- Refined 3 x 1 item-label layout to match the existing warehouse labels more closely.
-- Tightened spacing and moved content toward the upper-left.
-- Reduced item-code size to leave room for two description lines.
-- Increased Data Matrix size slightly while preserving scan reliability.
