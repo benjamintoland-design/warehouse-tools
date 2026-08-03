@@ -1,28 +1,25 @@
-# Royal Warehouse Tools Worker v2.2.5
+# Royal Warehouse Tools Worker v2.2.6
 
 Cloudflare Worker + D1 inventory database + static web app.
 
-## v2.2.5 changes
+## v2.2.6 changes
 
-- Added a separate Manufacturer field to single item-label lookup and entry.
-- Manufacturer and description automatically load from shared D1 inventory.
-- Missing items can be added with item code, manufacturer, and description.
-- Existing manufacturer/description details can be updated.
-- Item labels now combine manufacturer + item code on the bold title line.
-- Description prints separately below the title and may wrap to two lines.
-- Removed the duplicate tiny item code beneath the Data Matrix on item labels.
-- Batch labels also load manufacturer and description from D1.
-- Primary-bin information remains excluded from item labels.
+- Item Data Matrix codes now encode `MANUFACTURER + SPACE + ITEM CODE` to match existing warehouse labels and WMS scanner expectations.
+- Example: manufacturer `BPT` and item code `235I` encode as `BPT 235I`.
+- Item-code database lookups still use the normalized catalog number only.
+- Updated both single-label preview/printing and batch printing.
+- Preserved visible manufacturer, item code, description, inventory import, and D1 workflows.
+- Synchronized the header, footer, and About modal to version 2.2.6.
+
+## Existing features
+
+- Location labels with QR codes in 4 × 2 and 2 × 4 formats.
+- Item labels with Data Matrix codes in 3 × 1 format.
+- Single and batch label printing.
+- Shared Cloudflare D1 inventory lookup, import, search, and manual item updates.
+- Manufacturer and description lookup with uppercase label formatting.
 
 Deploy through the existing Cloudflare Git integration with:
 
 - Build command: `npm install`
 - Deploy command: `npx wrangler deploy`
-
-- Tightened the 3 × 1 item-label layout to match existing warehouse labels more closely.
-- Enlarged the Data Matrix while preserving quiet space.
-- Moved the manufacturer/item-code title and description into a compact top-aligned text block.
-- Added automatic title font reduction for long manufacturer + item-code combinations.
-- Limited descriptions to two clean word-wrapped lines without splitting words.
-
-- Force item codes, manufacturers, and descriptions to uppercase in previews, printing, manual saves, and inventory imports.
