@@ -29,8 +29,8 @@ input,textarea{text-transform:uppercase}textarea{min-height:185px;resize:vertica
 .code-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 auto}
 .horizontal .code-wrap{width:1.35in}.horizontal .code-box canvas,.horizontal .code-box img{width:1.18in!important;height:1.18in!important}
 .vertical .code-box canvas,.vertical .code-box img{width:1.55in!important;height:1.55in!important}.item .code-wrap{width:.80in;height:.89in;justify-content:flex-start;padding-top:0}
-.item .code-box canvas{width:.78in!important;height:.78in!important}.full{font-size:11px;font-weight:800;margin-top:4px;white-space:nowrap}.item .full{display:none}
-.display{font-size:43px;line-height:1;font-weight:900;white-space:nowrap;text-align:center;flex:1}.vertical .display{font-size:28px;flex:none}.item .display{font-size:13.5px;text-transform:uppercase;line-height:1.02;text-align:left;white-space:nowrap;letter-spacing:0;font-weight:800;flex:none;max-width:100%;overflow:hidden;text-overflow:clip}.item .display.compact{font-size:12px}.item .display.tiny{font-size:10.5px}.item-text{min-width:0;flex:1;height:.89in;display:flex;flex-direction:column;justify-content:flex-start;padding-top:.015in;overflow:hidden}.item-description{font-size:10.2px;line-height:1.08;font-weight:500;margin-top:.055in;overflow:hidden;text-transform:uppercase;white-space:normal;word-break:normal;overflow-wrap:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;max-height:2.16em}.lookup-row{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:end}.lookup-row button{padding:0 14px}.lookup-message{font-size:12px;margin-top:7px;color:#6b7280}.lookup-message.ok{color:#047857}.lookup-message.warn{color:#b45309}.lookup-message.error{color:#b91c1c}
+.item .code-box canvas{width:.78in!important;height:.78in!important}.code-box canvas{display:block!important}.code-box img{display:none!important}.full{font-size:11px;font-weight:800;margin-top:4px;white-space:nowrap}.item .full{display:none}
+.display{font-size:50px;line-height:1;font-weight:900;white-space:nowrap;text-align:center;flex:1}.vertical .display{font-size:32px;flex:none}.item .display{font-size:15px;text-transform:uppercase;line-height:1.02;text-align:left;white-space:nowrap;letter-spacing:0;font-weight:800;flex:none;max-width:100%;overflow:hidden;text-overflow:clip}.item .display.compact{font-size:13px}.item .display.tiny{font-size:11.5px}.item-text{min-width:0;flex:1;height:.89in;display:flex;flex-direction:column;justify-content:flex-start;padding-top:.015in;overflow:hidden}.item-description{font-size:11px;line-height:1.08;font-weight:500;margin-top:.055in;overflow:hidden;text-transform:uppercase;white-space:normal;word-break:normal;overflow-wrap:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;max-height:2.16em}.lookup-row{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:end}.lookup-row button{padding:0 14px}.lookup-message{font-size:12px;margin-top:7px;color:#6b7280}.lookup-message.ok{color:#047857}.lookup-message.warn{color:#b45309}.lookup-message.error{color:#b91c1c}
 .recent{margin-top:18px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.chip{min-height:34px;padding:6px 10px;border-radius:999px;font-size:13px}
 .inventory-result{display:block;width:100%;text-align:left;border:1px solid #e5e7eb;background:#fff;border-radius:10px;padding:10px 12px;margin:8px 0;cursor:pointer}
 .inventory-result strong{display:block}.inventory-result small{display:block;color:#6b7280;margin-top:3px}
@@ -46,7 +46,7 @@ input,textarea{text-transform:uppercase}textarea{min-height:185px;resize:vertica
 </head>
 <body>
 <main class="app">
-<div class="top"><h1>Royal Warehouse Tools</h1><div class="badge">v2.2.7</div></div>
+<div class="top"><h1>Royal Warehouse Tools</h1><div class="badge">v2.3.0</div></div>
 
 <div class="tools">
   <button id="locTool" class="tool active">📍 Location Labels</button>
@@ -92,12 +92,12 @@ input,textarea{text-transform:uppercase}textarea{min-height:185px;resize:vertica
 </section>
 
 <footer class="app-footer">
-  <span>Royal Warehouse Tools v2.2.7 · Built in-house by <strong>Benjamin Toland</strong></span>
+  <span>Royal Warehouse Tools v2.3.0 · Built in-house by <strong>Benjamin Toland</strong></span>
   <button id="aboutBtn">About & Release Notes</button>
 </footer>
 </main>
 
-<div id="aboutModal" class="modal-backdrop hidden"><div class="modal"><button id="aboutClose" class="modal-close">Close</button><h2>Royal Warehouse Tools</h2><p><strong>Version 2.2.6</strong><br>Built in-house by <strong>Benjamin Toland</strong></p><p>Location labels, Data Matrix item labels, batch printing, and shared D1 inventory import/search.</p><p><strong>Have an idea or find a bug? Talk to Ben.</strong></p></div></div>
+<div id="aboutModal" class="modal-backdrop hidden"><div class="modal"><button id="aboutClose" class="modal-close">Close</button><h2>Royal Warehouse Tools</h2><p><strong>Version 2.3.0</strong><br>Built in-house by <strong>Benjamin Toland</strong></p><p>Location labels, Data Matrix item labels, batch printing, and shared D1 inventory import/search.</p><p><strong>Have an idea or find a bug? Talk to Ben.</strong></p></div></div>
 <div id="printArea"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -117,7 +117,7 @@ const itemCache=new Map();
 function clean(v){return String(v||'').trim().toUpperCase().replace(/\s+/g,'')}
 function simple(c){const p=c.split('-').filter(Boolean);if(p.length>=4){const n=parseInt(p.at(-1),10);return p.slice(0,-1).join('')+'-'+(Number.isNaN(n)?p.at(-1):n)}return c.replaceAll('-','')}
 function codes(){if(mode==='single')return[clean(singleInput.value)].filter(Boolean);const s=new Set(),o=[];batchInput.value.split(/\r?\n/).forEach(x=>{x=clean(x);if(x&&!s.has(x)){s.add(x);o.push(x)}});return o}
-function makeCode(el,text,kind=tool){el.innerHTML='';try{if(kind==='location'){if(typeof QRCode==='undefined')throw new Error('QR library unavailable');new QRCode(el,{text,width:240,height:240,correctLevel:QRCode.CorrectLevel.M})}else{if(typeof bwipjs==='undefined')throw new Error('Data Matrix library unavailable');const c=document.createElement('canvas');el.appendChild(c);bwipjs.toCanvas(c,{bcid:'datamatrix',text,scale:5,paddingwidth:0,paddingheight:0})}}catch(e){el.textContent='CODE ERROR';el.style.fontSize='11px';el.style.fontWeight='800';console.error(e)}}
+function makeCode(el,text,kind=tool){el.innerHTML='';el.removeAttribute('style');try{if(kind==='location'){if(typeof QRCode==='undefined')throw new Error('QR library unavailable');new QRCode(el,{text,width:240,height:240,correctLevel:QRCode.CorrectLevel.M});const canvas=el.querySelector('canvas');if(!canvas)throw new Error('QR canvas was not created');canvas.style.display='block';el.querySelectorAll('img').forEach(img=>img.style.display='none')}else{if(typeof bwipjs==='undefined')throw new Error('Data Matrix library unavailable');const c=document.createElement('canvas');el.appendChild(c);bwipjs.toCanvas(c,{bcid:'datamatrix',text,scale:5,paddingwidth:0,paddingheight:0})}}catch(e){el.textContent='CODE ERROR';el.style.fontSize='11px';el.style.fontWeight='800';console.error(e)}}
 function setLookupMessage(text,type=''){lookupMessage.textContent=text;lookupMessage.className='lookup-message'+(type?' '+type:'')}
 function fitItemTitle(el,text){el.classList.remove('compact','tiny');if(text.length>25)el.classList.add('tiny');else if(text.length>20)el.classList.add('compact')}
 function render(){if(tool==='inventory')return;const a=codes(),c=a[0]||(tool==='location'?'P-10-A-05':'AMR1224SG41');previewCard.className='label-card '+(tool==='location'?'location '+orientation:'item');previewFull.textContent=c;const cached=itemCache.get(c);const manufacturer=(mode==='single'?(itemManufacturer?.value.trim()||''):((cached&&cached.manufacturer)||'')).toUpperCase();const itemScanValue=[manufacturer,c].filter(Boolean).join(' ');previewDisplay.textContent=tool==='location'?simple(c):itemScanValue;if(tool==='item')fitItemTitle(previewDisplay,previewDisplay.textContent);previewDescription.textContent=tool==='item'?(mode==='single'?itemDescription.value.trim().toUpperCase():String((cached&&cached.description)||'').toUpperCase()):'';makeCode(previewCode, tool==='item' ? itemScanValue : c, tool);previewCount.textContent=mode==='single'?'Single':a.length+' labels';batchStats.textContent=a.length+' unique labels ready'}
