@@ -1,15 +1,15 @@
-# Royal Warehouse Tools Worker v2.2.6
+# Royal Warehouse Tools Worker v2.2.7
 
 Cloudflare Worker + D1 inventory database + static web app.
 
-## v2.2.6 changes
+## v2.2.7 changes
 
 - Item Data Matrix codes now encode `MANUFACTURER + SPACE + ITEM CODE` to match existing warehouse labels and WMS scanner expectations.
 - Example: manufacturer `BPT` and item code `235I` encode as `BPT 235I`.
 - Item-code database lookups still use the normalized catalog number only.
 - Updated both single-label preview/printing and batch printing.
 - Preserved visible manufacturer, item code, description, inventory import, and D1 workflows.
-- Synchronized the header, footer, and About modal to version 2.2.6.
+- Synchronized the header, footer, and About modal to version 2.2.7.
 
 ## Existing features
 
@@ -23,3 +23,9 @@ Deploy through the existing Cloudflare Git integration with:
 
 - Build command: `npm install`
 - Deploy command: `npx wrangler deploy`
+
+
+## v2.2.7
+- Fixed location QR preview generation after the item Data Matrix scan-value update.
+- Explicitly preserves location QR codes and item Data Matrix codes as separate barcode types.
+- Added a visible code-generation error fallback.
