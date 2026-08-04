@@ -76,7 +76,7 @@ input,textarea{text-transform:uppercase}textarea{min-height:185px;resize:vertica
 </head>
 <body>
 <main class="app">
-<div class="top"><h1>Royal Warehouse Tools</h1><div class="badge">v2.3.0</div></div>
+<div class="top"><h1>Royal Warehouse Tools</h1><div class="badge">v2.3.0 · WC2</div></div>
 
 <div class="tools">
   <button id="locTool" class="tool active">📍 Location Labels</button>
@@ -160,7 +160,7 @@ function isWillCallLocation(code){
   return typeof code==='string' && code.startsWith('WC-');
 }
 
-function render(){if(tool==='inventory')return;const a=codes(),c=a[0]||'';previewCard.className='label-card '+(tool==='location'?'location '+orientation:'item');previewFull.textContent=c;const cached=itemCache.get(c);const manufacturer=(mode==='single'?(itemManufacturer?.value.trim()||''):((cached&&cached.manufacturer)||'')).toUpperCase();const itemScanValue=[manufacturer,c].filter(Boolean).join(' ');previewDisplay.textContent=tool==='location'?displayLocation(c):itemScanValue;if(tool==='item')fitItemTitle(previewDisplay,previewDisplay.textContent);previewDescription.textContent=tool==='item'?(mode==='single'?itemDescription.value.trim().toUpperCase():String((cached&&cached.description)||'').toUpperCase()):'';if(c){makeCode(previewCode,tool==='item'?itemScanValue:c,tool)}else{previewCode.innerHTML=''};previewCount.textContent=mode==='single'?'Single':a.length+' labels';batchStats.textContent=a.length+' unique labels ready'}
+function render(){if(tool==='inventory')return;const a=codes(),c=a[0]||'';previewCard.className='label-card '+(tool==='location'?'location '+orientation+(isWillCallLocation(c)?' willcall':''):'item');previewFull.textContent=c;const cached=itemCache.get(c);const manufacturer=(mode==='single'?(itemManufacturer?.value.trim()||''):((cached&&cached.manufacturer)||'')).toUpperCase();const itemScanValue=[manufacturer,c].filter(Boolean).join(' ');previewDisplay.textContent=tool==='location'?displayLocation(c):itemScanValue;if(tool==='item')fitItemTitle(previewDisplay,previewDisplay.textContent);previewDescription.textContent=tool==='item'?(mode==='single'?itemDescription.value.trim().toUpperCase():String((cached&&cached.description)||'').toUpperCase()):'';if(c){makeCode(previewCode,tool==='item'?itemScanValue:c,tool)}else{previewCode.innerHTML=''};previewCount.textContent=mode==='single'?'Single':a.length+' labels';batchStats.textContent=a.length+' unique labels ready'}
 function setTool(t){
   if(tool==='location'||tool==='item'){
     toolValues[tool]=singleInput.value;

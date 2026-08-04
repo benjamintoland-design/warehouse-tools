@@ -1,11 +1,9 @@
 # Royal Warehouse Tools
 
-## v2.3.0
+## v2.3.0 — WC2 build
 
-### Will Call layout refinement
-- Further reduced the QR size only for horizontal Will Call labels.
-- Reduced the reserved QR column width and QR-to-text gap.
-- Shifted Will Call content farther left.
-- Slightly reduced only the Will Call main text to prevent clipping.
-- Applied the same Will Call-specific layout to both preview and printed labels.
-- All pallet, rack, item, inventory, QR, and Data Matrix behavior remains unchanged.
+### Fixed
+- Correctly applies the Will Call-specific layout class to the live preview.
+- Preserves the same Will Call-specific layout on printed labels.
+- Adds a temporary `WC2` build marker to the header badge so deployment can be visually confirmed.
+- No changes to pallet/rack labels, item labels, inventory, QR contents, or Data Matrix contents.
