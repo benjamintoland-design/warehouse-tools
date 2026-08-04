@@ -1,14 +1,16 @@
 # Royal Warehouse Tools
 
-## v2.3.1
+## v2.3.0
 
-### Changed
-- Will Call location labels now display the full official code with dashes, such as `WC-07-01`.
-- Pallet and standard warehouse locations continue using the condensed large-print format, such as `P01A-1`.
-- QR codes continue encoding the full official location value.
-- Preserved Safari QR rendering fix and larger label font sizes from v2.3.0.
-- Preserved item Data Matrix format as `MANUFACTURER + SPACE + ITEM CODE`.
-
-### Location display standard
-- Will Call: encoded `WC-07-01`, displayed `WC-07-01`
-- Pallet location: encoded `P-01-A-01`, displayed `P01A-1`
+### Included
+- Larger horizontal and vertical location-label fonts
+- Larger item-label title and description fonts
+- Safari QR rendering fix
+- WMS-compatible item Data Matrix values using `MANUFACTURER + SPACE + ITEM CODE`
+- Will Call labels display full official codes with dashes, such as `WC-07-01`
+- Pallet and standard warehouse locations continue using condensed display text, such as `P01A-1`
+- Location Labels and Item Labels keep separate current input values
+- New sessions start with blank fields instead of demonstration values
+- Barcode previews stay blank until a real code is entered
+- Each tool remembers its own unfinished entry locally
+- Inventory lookup continues using the item code only
