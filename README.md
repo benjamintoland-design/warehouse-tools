@@ -2,8 +2,10 @@
 
 ## v2.3.0
 
-### Layout refinement
-- Will Call horizontal labels now use a slightly smaller QR code.
-- Reduced spacing between QR and text on Will Call labels.
-- Shifted Will Call layout slightly left.
-- Standard pallet/rack location labels are unchanged.
+### Will Call layout refinement
+- Further reduced the QR size only for horizontal Will Call labels.
+- Reduced the reserved QR column width and QR-to-text gap.
+- Shifted Will Call content farther left.
+- Slightly reduced only the Will Call main text to prevent clipping.
+- Applied the same Will Call-specific layout to both preview and printed labels.
+- All pallet, rack, item, inventory, QR, and Data Matrix behavior remains unchanged.
