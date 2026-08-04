@@ -42,6 +42,19 @@ input,textarea{text-transform:uppercase}textarea{min-height:185px;resize:vertica
 #printArea{display:none}.print-label{page-break-after:always;break-after:page}.print-label:last-child{page-break-after:auto;break-after:auto}
 @media(max-width:850px){.grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.app{padding:14px}}
 @media print{.app{display:none!important}#printArea{display:block!important}body{background:#fff}}
+
+.label-card.location.horizontal.willcall .code-wrap{
+  gap:10px!important;
+}
+.label-card.location.horizontal.willcall .code-box canvas,
+.label-card.location.horizontal.willcall .code-box img{
+  width:150px!important;
+  height:150px!important;
+}
+.label-card.location.horizontal.willcall{
+  padding-left:8px!important;
+}
+
 </style>
 </head>
 <body>
@@ -125,6 +138,11 @@ function codes(){if(mode==='single')return[clean(singleInput.value)].filter(Bool
 function makeCode(el,text,kind=tool){el.innerHTML='';el.removeAttribute('style');try{if(kind==='location'){if(typeof QRCode==='undefined')throw new Error('QR library unavailable');new QRCode(el,{text,width:240,height:240,correctLevel:QRCode.CorrectLevel.M});const canvas=el.querySelector('canvas');if(!canvas)throw new Error('QR canvas was not created');canvas.style.display='block';el.querySelectorAll('img').forEach(img=>img.style.display='none')}else{if(typeof bwipjs==='undefined')throw new Error('Data Matrix library unavailable');const c=document.createElement('canvas');el.appendChild(c);bwipjs.toCanvas(c,{bcid:'datamatrix',text,scale:5,paddingwidth:0,paddingheight:0})}}catch(e){el.textContent='CODE ERROR';el.style.fontSize='11px';el.style.fontWeight='800';console.error(e)}}
 function setLookupMessage(text,type=''){lookupMessage.textContent=text;lookupMessage.className='lookup-message'+(type?' '+type:'')}
 function fitItemTitle(el,text){el.classList.remove('compact','tiny');if(text.length>25)el.classList.add('tiny');else if(text.length>20)el.classList.add('compact')}
+
+function isWillCallLocation(code){
+  return typeof code==='string' && code.startsWith('WC-');
+}
+
 function render(){if(tool==='inventory')return;const a=codes(),c=a[0]||'';previewCard.className='label-card '+(tool==='location'?'location '+orientation:'item');previewFull.textContent=c;const cached=itemCache.get(c);const manufacturer=(mode==='single'?(itemManufacturer?.value.trim()||''):((cached&&cached.manufacturer)||'')).toUpperCase();const itemScanValue=[manufacturer,c].filter(Boolean).join(' ');previewDisplay.textContent=tool==='location'?displayLocation(c):itemScanValue;if(tool==='item')fitItemTitle(previewDisplay,previewDisplay.textContent);previewDescription.textContent=tool==='item'?(mode==='single'?itemDescription.value.trim().toUpperCase():String((cached&&cached.description)||'').toUpperCase()):'';if(c){makeCode(previewCode,tool==='item'?itemScanValue:c,tool)}else{previewCode.innerHTML=''};previewCount.textContent=mode==='single'?'Single':a.length+' labels';batchStats.textContent=a.length+' unique labels ready'}
 function setTool(t){
   if(tool==='location'||tool==='item'){
