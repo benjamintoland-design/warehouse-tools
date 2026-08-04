@@ -1,31 +1,14 @@
-# Royal Warehouse Tools Worker v2.2.7
+# Royal Warehouse Tools
 
-Cloudflare Worker + D1 inventory database + static web app.
+## v2.3.1
 
-## v2.2.7 changes
+### Changed
+- Will Call location labels now display the full official code with dashes, such as `WC-07-01`.
+- Pallet and standard warehouse locations continue using the condensed large-print format, such as `P01A-1`.
+- QR codes continue encoding the full official location value.
+- Preserved Safari QR rendering fix and larger label font sizes from v2.3.0.
+- Preserved item Data Matrix format as `MANUFACTURER + SPACE + ITEM CODE`.
 
-- Item Data Matrix codes now encode `MANUFACTURER + SPACE + ITEM CODE` to match existing warehouse labels and WMS scanner expectations.
-- Example: manufacturer `BPT` and item code `235I` encode as `BPT 235I`.
-- Item-code database lookups still use the normalized catalog number only.
-- Updated both single-label preview/printing and batch printing.
-- Preserved visible manufacturer, item code, description, inventory import, and D1 workflows.
-- Synchronized the header, footer, and About modal to version 2.2.7.
-
-## Existing features
-
-- Location labels with QR codes in 4 × 2 and 2 × 4 formats.
-- Item labels with Data Matrix codes in 3 × 1 format.
-- Single and batch label printing.
-- Shared Cloudflare D1 inventory lookup, import, search, and manual item updates.
-- Manufacturer and description lookup with uppercase label formatting.
-
-Deploy through the existing Cloudflare Git integration with:
-
-- Build command: `npm install`
-- Deploy command: `npx wrangler deploy`
-
-
-## v2.2.7
-- Fixed location QR preview generation after the item Data Matrix scan-value update.
-- Explicitly preserves location QR codes and item Data Matrix codes as separate barcode types.
-- Added a visible code-generation error fallback.
+### Location display standard
+- Will Call: encoded `WC-07-01`, displayed `WC-07-01`
+- Pallet location: encoded `P-01-A-01`, displayed `P01A-1`
