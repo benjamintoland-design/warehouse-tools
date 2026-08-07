@@ -7,7 +7,7 @@ Single-page warehouse label and inventory app, now including **CounterAssist** f
 - **Location Labels** — horizontal 4 × 2 or vertical 2 × 4 QR location labels, batch copies, and the compact horizontal `WC-` Will Call layout.
 - **Item Labels** — item/manufacturer labels with Data Matrix output and inventory lookup.
 - **CounterAssist** — one 4 × 2 label per box, Utah timestamp, device-local recent history, and reprint.
-- **Inventory** — shared inventory search/edit entry point using the existing `/api/items` Worker routes.
+- **Inventory** — shared D1 inventory status, CSV/Excel upload with column mapping, replacement import, search, and item editing.
 
 ## CounterAssist behavior
 
@@ -28,10 +28,15 @@ Single-page warehouse label and inventory app, now including **CounterAssist** f
 
 Upload the contents of this repository to GitHub. The web root is `public/`; keep the existing Cloudflare Worker/API configuration unchanged. No database migration is needed for CounterAssist.
 
-The page loads QRCode.js and bwip-js from public CDNs. The existing inventory Worker should continue to serve:
+The page loads QRCode.js, bwip-js, and SheetJS from public CDNs. The existing inventory Worker continues to serve the original v2.3 routes:
 
-- `GET /api/items/:itemNumber`
-- `GET /api/items?q=search-term`
+- `GET /api/inventory/status`
+- `GET /api/inventory/item/:itemNumber`
+- `POST /api/inventory/item`
+- `GET /api/inventory/search?q=search-term`
+- `POST /api/inventory/reset`
+- `POST /api/inventory/import`
+- `POST /api/inventory/finish`
 
 ## Printer setup
 
@@ -57,3 +62,4 @@ Version: **2.4.0 — CounterAssist**
 - Auto-clear, reset box count, and refocus after new print jobs
 - Preserve location, Will Call, item-label, Data Matrix, and inventory workflows
 - Restore remembered horizontal and vertical location-label controls
+- Restore the v2.3 shared inventory upload, mapping, import, status, search, and item-save workflow
