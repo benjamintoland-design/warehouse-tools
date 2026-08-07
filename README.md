@@ -1,72 +1,21 @@
 # Royal Warehouse Tools
 
-Single-page warehouse label and inventory app, now including **CounterAssist** for staged Will Call orders.
+## v2.4.2 — Location Format Fix
 
-Built in-house by **Benjamin Toland**.
+This release restores the original warehouse-location label hierarchy while preserving all current Item Labels, CounterAssist, Inventory, Safari fixes, and print behavior.
 
-## Included modules
+### Location labels
+- Standard warehouse QR codes still encode the full official location, e.g. `P-02-F-02`.
+- Small text under the QR displays the full official location, e.g. `P-02-F-02`.
+- Large human-readable warehouse text is condensed, e.g. `P2F-2`.
+- `P-01-C-03` displays as `P1C-3`.
+- Will Call locations remain uncondensed, e.g. `WC-07-01`.
+- Preview and print output use the same formatting helper.
 
-- **Location Labels** — single or batch horizontal 4 × 2 / vertical 2 × 4 QR labels, recent-label recall, and the compact horizontal `WC-` Will Call layout.
-- **Item Labels** — single or batch item/manufacturer labels with Data Matrix output, shared inventory lookup, recent-label recall, and optional print-only notes.
-- **CounterAssist** — one 4 × 2 label per box, Utah timestamp, device-local recent history, and reprint.
-- **Inventory** — shared D1 inventory status, CSV/Excel upload with column mapping, replacement import, search, and item editing.
-
-## CounterAssist behavior
-
-- Sales register number, customer name, and box count are required.
-- Customer and other text entry is forced to uppercase.
-- Box count starts at 1 and supports 1–200 labels per job.
-- Print stays disabled until the form is valid.
-- One label prints per box: `BOX 1 OF X`, `BOX 2 OF X`, and so on.
-- The QR contains only the sales register number.
-- The timestamp is captured once, at print time, and displayed in `America/Denver` time on every label in that job.
-- Successful print initiation saves the order to browser `localStorage`, keeping the newest 50 orders.
-- Reprint preserves the original timestamp and reprints every label in the order.
-- A new print auto-clears the form, resets boxes to 1, and focuses Sales Register Number.
-
-> Browser print dialogs do not expose whether paper physically printed. For that reason, the order is saved and the form clears when the print dialog opens.
-
-## Deploy
-
-Upload the contents of this repository to GitHub. The web root is `public/`; keep the existing Cloudflare Worker/API configuration unchanged. No database migration is needed for CounterAssist.
-
-The page loads QRCode.js, bwip-js, and SheetJS from public CDNs. The existing inventory Worker continues to serve the original v2.3 routes:
-
-- `GET /api/inventory/status`
-- `GET /api/inventory/item/:itemNumber`
-- `POST /api/inventory/item`
-- `GET /api/inventory/search?q=search-term`
-- `POST /api/inventory/reset`
-- `POST /api/inventory/import`
-- `POST /api/inventory/finish`
-
-## Printer setup
-
-Use a 4 × 2 inch paper size, portrait orientation, 100% scale, and no browser headers or footers. The print stylesheet creates one page per label.
-
-## Release
-
-Version: **2.4.1 — CounterAssist Safari Fix**
-
-The 3 × 1 Item Label preview and print layout were verified in WebKit with short/long item titles and optional notes.
-
-### Suggested commit title
-
-`Add CounterAssist staged-order label workflow`
-
-### Suggested commit notes
-
-- Add CounterAssist as a fourth Royal Warehouse Tools module
-- Require register number, uppercase customer name, and valid box count
-- Capture and lock an America/Denver timestamp at print time
-- Encode only the sales register number in each QR code
-- Print one 4 × 2 label per box with automatic BOX X OF Y numbering
-- Save the newest 50 staged orders in device-local history
-- Reprint complete orders while preserving their original timestamp
-- Auto-clear, reset box count, and refocus after new print jobs
-- Preserve location, Will Call, item-label, Data Matrix, and inventory workflows
-- Restore remembered horizontal and vertical location-label controls
-- Restore the v2.3 shared inventory upload, mapping, import, status, search, and item-save workflow
-- Enlarge CounterAssist customer and register-number text
-- Add optional bold, separated notes to Item Labels without saving notes to inventory
-- Restore v2.3 Single/Batch modes and recent-label recall for Location and Item Labels
+### Unchanged
+- CounterAssist
+- Item Labels and Data Matrix values
+- Inventory lookup/import
+- Recent labels/history
+- Utah timestamps
+- Safari item-label layout fixes
