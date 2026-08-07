@@ -6,8 +6,8 @@ Built in-house by **Benjamin Toland**.
 
 ## Included modules
 
-- **Location Labels** — horizontal 4 × 2 or vertical 2 × 4 QR location labels, batch copies, and the compact horizontal `WC-` Will Call layout.
-- **Item Labels** — item/manufacturer labels with Data Matrix output and inventory lookup.
+- **Location Labels** — single or batch horizontal 4 × 2 / vertical 2 × 4 QR labels, recent-label recall, and the compact horizontal `WC-` Will Call layout.
+- **Item Labels** — single or batch item/manufacturer labels with Data Matrix output, shared inventory lookup, recent-label recall, and optional print-only notes.
 - **CounterAssist** — one 4 × 2 label per box, Utah timestamp, device-local recent history, and reprint.
 - **Inventory** — shared D1 inventory status, CSV/Excel upload with column mapping, replacement import, search, and item editing.
 
@@ -67,3 +67,4 @@ Version: **2.4.0 — CounterAssist**
 - Restore the v2.3 shared inventory upload, mapping, import, status, search, and item-save workflow
 - Enlarge CounterAssist customer and register-number text
 - Add optional bold, separated notes to Item Labels without saving notes to inventory
+- Restore v2.3 Single/Batch modes and recent-label recall for Location and Item Labels
