@@ -31,6 +31,19 @@
     @media print{html,body{width:4in!important;height:auto!important;margin:0!important;padding:0!important;background:#fff!important}.topbar,.tabs,main,.app-footer{display:none!important}.print-root{display:block!important}.print-label{width:4in;height:2in;box-sizing:border-box;page-break-after:always;break-after:page;padding:.13in .16in;overflow:hidden;background:#fff}.print-label:last-child{page-break-after:auto}.print-label .location-label .code{font-size:50px}.print-label .location-label.will-call .code{font-size:46px}.print-label .location-label canvas,.print-label .location-label img{width:1.31in!important;height:1.31in!important}.print-label .location-label.vertical{flex-direction:column}.print-label .location-label.vertical .code{font-size:32px}.print-label .location-label.vertical canvas,.print-label .location-label.vertical img{width:1.55in!important;height:1.55in!important}.print-label .item-label{grid-template-columns:.8in 1fr;gap:.105in;align-items:start}.print-label .item-label canvas{width:.78in!important;height:.78in!important}.print-label .item-title{font-size:15px}.print-label .item-desc{font-size:10.5px;margin-top:.04in}.print-label .item-note{font-size:10.5px;margin-top:.055in;padding-top:.04in}.print-label .counter-label{grid-template-columns:1.28in 1fr;gap:.15in}.print-label .counter-label canvas,.print-label .counter-label img{width:1.25in!important;height:1.25in!important}.print-label .counter-customer{font-size:31px}.print-label .counter-reg-number{font-size:31px}.print-label .counter-box{font-size:27px}}
     @media print{.print-label .item-label{align-items:center}.print-label .item-code-slot{height:100%;display:flex;align-items:center;justify-content:center}.print-label .item-label canvas{display:block;align-self:auto;margin:0!important}.print-label .item-title{font-size:18px;line-height:1;font-weight:950}.print-label .item-desc{margin-top:.085in}}
     @media print{.print-label .item-label{align-items:stretch}.print-label .item-code-slot{position:relative;align-self:stretch;height:auto;display:block}.print-label .item-code-slot canvas{position:absolute;top:47%;left:50%;transform:translate(-50%,-50%);margin:0!important}.print-label .item-note:not(:empty){position:static;grid-row:4;align-self:end;padding-top:.04in}}
+    /* Final Safari-safe Item Label layout. Keep these rules last. */
+    .item-preview .item-label{display:grid;grid-template-columns:28% 1fr;gap:14px;align-items:stretch}
+    .item-preview .item-code-slot{position:static!important;display:grid!important;place-items:center;height:auto!important;align-self:stretch;overflow:hidden}
+    .item-preview .item-code-slot canvas{position:static!important;display:block!important;transform:none!important;inset:auto!important;width:min(88%,150px)!important;height:auto!important;margin:0!important}
+    .item-preview .item-copy{height:auto;align-self:stretch;display:grid;grid-template-rows:auto auto 1fr auto;min-height:0}
+    .item-preview .item-note:not(:empty){position:static!important;grid-row:4;align-self:end;margin:0!important;padding-top:6px}
+    @media print{
+      .print-label .item-label{display:grid;grid-template-columns:.8in 1fr;gap:.105in;align-items:stretch}
+      .print-label .item-code-slot{position:static!important;display:grid!important;place-items:center;height:auto!important;align-self:stretch;overflow:hidden}
+      .print-label .item-code-slot canvas{position:static!important;display:block!important;transform:none!important;inset:auto!important;width:.78in!important;height:.78in!important;margin:0!important}
+      .print-label .item-copy{height:auto;align-self:stretch;display:grid;grid-template-rows:auto auto 1fr auto;min-height:0}
+      .print-label .item-note:not(:empty){position:static!important;grid-row:4;align-self:end;margin:0!important;padding-top:.04in}
+    }
   </style>
 </head>
 <body>
