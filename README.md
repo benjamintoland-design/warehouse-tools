@@ -2,6 +2,8 @@
 
 Single-page warehouse label and inventory app, now including **CounterAssist** for staged Will Call orders.
 
+Built in-house by **Benjamin Toland**.
+
 ## Included modules
 
 - **Location Labels** — horizontal 4 × 2 or vertical 2 × 4 QR location labels, batch copies, and the compact horizontal `WC-` Will Call layout.
