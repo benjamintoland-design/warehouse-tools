@@ -4,7 +4,7 @@ Single-page warehouse label and inventory app, now including **CounterAssist** f
 
 ## Included modules
 
-- **Location Labels** — QR location labels, batch copies, and the compact `WC-` Will Call layout.
+- **Location Labels** — horizontal 4 × 2 or vertical 2 × 4 QR location labels, batch copies, and the compact horizontal `WC-` Will Call layout.
 - **Item Labels** — item/manufacturer labels with Data Matrix output and inventory lookup.
 - **CounterAssist** — one 4 × 2 label per box, Utah timestamp, device-local recent history, and reprint.
 - **Inventory** — shared inventory search/edit entry point using the existing `/api/items` Worker routes.
@@ -56,3 +56,4 @@ Version: **2.4.0 — CounterAssist**
 - Reprint complete orders while preserving their original timestamp
 - Auto-clear, reset box count, and refocus after new print jobs
 - Preserve location, Will Call, item-label, Data Matrix, and inventory workflows
+- Restore remembered horizontal and vertical location-label controls
