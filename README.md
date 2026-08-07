@@ -46,7 +46,9 @@ Use a 4 × 2 inch paper size, portrait orientation, 100% scale, and no browser h
 
 ## Release
 
-Version: **2.4.0 — CounterAssist**
+Version: **2.4.1 — CounterAssist Safari Fix**
+
+The 3 × 1 Item Label preview and print layout were verified in WebKit with short/long item titles and optional notes.
 
 ### Suggested commit title
 
