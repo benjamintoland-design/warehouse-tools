@@ -63,3 +63,5 @@ Version: **2.4.0 — CounterAssist**
 - Preserve location, Will Call, item-label, Data Matrix, and inventory workflows
 - Restore remembered horizontal and vertical location-label controls
 - Restore the v2.3 shared inventory upload, mapping, import, status, search, and item-save workflow
+- Enlarge CounterAssist customer and register-number text
+- Add optional bold, separated notes to Item Labels without saving notes to inventory
